@@ -24,3 +24,44 @@ class Node(object):
         self.val = val
         self.left = left
         self.right = right
+
+'''
+root
+'''
+
+
+def serialize(node, serialized_node=None):
+    if serialized_node is None:
+        serialized_node = []
+    while type(node.left) is Node or type(node.right) is Node:
+        serialized_node = serialize(node, serialized_node)
+    serialized_node.append(node.val)
+    serialized_node.append(node.left)
+    serialized_node.append(node.right)
+    return serialized_node
+
+
+def deserialize(node):
+    for n in node:
+        pass
+
+
+
+
+
+'''
+    root
+    /  \
+  left right
+  /
+left.left 
+'''
+
+simple_node = Node(1, 2, 3)
+print(serialize(simple_node))
+
+
+
+
+node = Node('root', Node('left', Node('left.left')), Node('right'))
+print(serialize(node))

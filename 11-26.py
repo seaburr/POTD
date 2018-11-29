@@ -40,9 +40,24 @@ def multiply_list_recurse(current_index, input_list=[], output_list=[]):
     return output_list
 
 
+# Same as above, but without needing an index val passed.
+def multiply_list_recurse_v2(input_list=[], output_list=[]):
+    if not len(output_list) >= len(input_list):
+        output_list.insert(len(output_list), 1)
+        for i in range(0, len(input_list)):
+            if not (len(output_list) - 1) == i:
+                output_list[(len(output_list) - 1)] = output_list[(len(output_list) - 1)] * input_list[i]
+        multiply_list_recurse_v2(input_list, output_list)
+    return output_list
+
+
 print(multiply_list(test_1))
 print(multiply_list(test_2))
 
 print(multiply_list_recurse(0, test_1, []))
 print(multiply_list_recurse(0, test_2, []))
 print(multiply_list_recurse(0, [], []))
+
+print(multiply_list_recurse_v2(test_1, []))
+print(multiply_list_recurse_v2(test_2, []))
+print(multiply_list_recurse_v2([], []))
